@@ -37,26 +37,3 @@ app.post('/', function(req, res) {
     });
 
 })
-
-// app.post('/', function (req, res) {
-    
-//     let origin = req.body.origin;
-//     console.log(origin);
-
-//     request(origin, function (err, response) {
-//       if(err){
-//         console.log(err);
-//         res.render('index', {result: null, error: 'Error, please try again'});
-//       } else {
-//         ckip.getSentences(response, function (err, sentences) {
-//             if (err) throw err;
-//             res.render('index', {result:sentences, error: null});
-//             console.log(sentences);  // [ '　台新(N)　金控(N)　12月(N)　3日(N)　將(ADV)　召開(Vt)
-//                                     // 　股東(N)　臨時會(N)　進行(Vt)　董監(N)　改選(Nv)　。(PERIODCATEGORY)' ]
-//           });
-//       }
-//     });
-
-
-
-//   })
