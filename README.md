@@ -16,9 +16,9 @@ Inspired from this phenomenon, I came up with this idea of making a generator to
 ---
 ### Usage 使用方式
 
-Browsing in Chrome on PC or Mac is suggested. First you need to input the text and click on [產生]. Afterwards, you can copy the pure result text or download the generated image. The image will result in 5 different color theme ramdomly. Since I applied Chinese word segmentation, Chinese input has the best effects. And, the result image only shows 7 lines at most, 
+Browsing in Chrome on PC or Mac is suggested. First you need to input the text and click on [產生]. Afterwards, you can copy the pure result text or download the generated image. The image will result in 5 different color theme ramdomly. Since I applied Chinese word segmentation, Traditional Chinese input is mandatory. And, the result image only shows 7 lines at most, 
 
-建議使用電腦版Chrome瀏覽器進行瀏覽。輸入文字後點擊產生，可複製左下角的純文字，或下載右側產生的圖，圖一共有五種配色，為隨機選擇。畢竟是使用中文斷詞，中文的效果最好，而生成的圖片最多只能容納七行字。
+建議使用電腦版Chrome瀏覽器進行瀏覽。輸入文字後點擊產生，可複製左下角的純文字，或下載右側產生的圖，圖一共有五種配色，為隨機選擇。畢竟是使用中文斷詞，目前只支援繁中輸入，而生成的圖片最多只能容納七行字。
 
 ---
 ### Demo 展示
