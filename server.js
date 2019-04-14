@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
   res.render('index', {result: null, error: null});
 })
 
-app.listen(80, function () { // for heroku tcp 80 is acceptable
+app.listen(process.env.PORT || 5000, function () { // for heroku tcp 80 is acceptable
   // console.log('tsaibrobetalnuts app listening on port 5000!')
 })
 
