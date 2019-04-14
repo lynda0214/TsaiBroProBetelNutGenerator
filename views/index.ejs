@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tsai Bro Pro Betel Nut Generator</title>
+    <link rel="icon" type="image/png" href="../img/favicon.PNG" />
+    <!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+
+
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+    </style>
+
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+            <h1>財哥專業檳榔攤產生器</h1>
+            <p class="text-center" style="margin:10px; color:#AAAAAA">為...取得...最佳...的...瀏覽...體驗...建議...使用...Chrome...瀏覽器</p>
+
+            <!---FBFanpage / Jieba / My GitHub Link / My Website-->
+            <a class="btn btn-outline-success" href="https://www.facebook.com/caigezhuanyebinlangtan/" role="button">
+                <i class="fab fa-facebook"></i>
+                財哥專業檳榔攤</a>
+            <a class="btn btn-outline-success" href="https://github.com/lynda0214/TsaiBroProBetelNutGenerator" role="button">
+                <i class="fab fa-github-alt"></i>
+                TsaiBroProBetelNutGenerator</a>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+
+                <div class="card">
+                    <div classs="card-body">
+                        <textarea id="origin" name="origin" type="text" class="form-control" placeholder="輸入一段話財哥幫你講..."
+                            required style="border:none; height:150px; resize:none"></textarea>
+                        <button class="btn btn-success" id="enter" type="button" style="Float: right; margin: 5px">
+                            <span id="loaderDiv" class="spinner-border spinner-border-sm" role="status"
+                                style="display:none" aria-hidden="true"></span>
+                            生成</button>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 10px">
+                    <div classs="card-body" style="height:198px; ">
+                        <div style="height:150px; padding:6px 12px 6px 12px">
+                            <p id="result"></p>
+                        </div>
+                        
+                        <button class="btn btn-secondary" id="copy" type="button" style="Float: right; margin: 5px" disabled="true">
+                            <i class="far fa-copy"></i>
+                            <span id="copied" style="display:none">已複製</span>
+                        </button>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <canvas id="mycanvas" style="border:1px solid rgba(0,0,0,.125); border-radius: .25rem; z-index:1"
+                    width="538" height="406">
+                </canvas>
+                <button class="btn btn-secondary" id="save" type="button"
+                    style="z-index:2; position: absolute; right: 20px; bottom: 11px" disabled="true">
+                    <i class="fas fa-file-download"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    
+</body>
+
+<script>
+
+    const colorTheme = new Array(5);
+    colorTheme[0] = ["#697F4F", "#409808", "#FBDA57", "#AA0101", "#0E00BF"];
+    colorTheme[1] = ["#F50306", "#F50306", "#EFF2F5", "#0400E3", "#060616"];
+    colorTheme[2] = ["#5E8246", "#289404", "#B9E7A8", "#21438C", "#FAFF00"];
+    colorTheme[3] = ["#B75953", "#F00300", "#FFF2E0", "#397100", "#050106"];
+    colorTheme[4] = ["#94704E", "#A78208", "#D74A47", "#000000", "#F9F0FF"];
+
+    const prepareFontLoad = (fontList) => Promise.all(fontList.map(font => document.fonts.load(font)))
+    async function WriteCanvasText(text) {
+        // write some text to the canvas
+        const canvas = document.getElementById("mycanvas");
+        const context = canvas.getContext("2d");
+
+        let colorIndex = Math.floor(Math.random()*5);
+
+        const grd = context.createLinearGradient(0, 0, 538, 0);
+        grd.addColorStop(0, colorTheme[colorIndex][0]);
+        grd.addColorStop(1, colorTheme[colorIndex][1]);
+
+        context.fillStyle = grd;
+        context.fillRect(0, 0, 538, 406);
+
+        const fontList = ['bold 42px cwTeXKai']
+        await prepareFontLoad(fontList)
+        context.font = fontList[0];
+
+        let splittedText = text.split('<br>');
+
+        for (let i = 0; i < splittedText.length; i++) {
+            context.fillStyle = colorTheme[colorIndex][2];
+            context.fillText(splittedText[i], 5, 50 + 50 * i); // yellow
+            context.fillStyle = colorTheme[colorIndex][3];
+            context.fillText(splittedText[i], 3, 50 + 50 * i); // red
+
+            if (i > 6)
+                break;
+        }
+
+        context.fillStyle = colorTheme[colorIndex][4]
+        context.fillText("險書：財哥專業檳榔攤產生器", 3, 400);
+
+    }
+
+
+    $('#enter').click(function () {
+
+        $.ajax({
+            url: '/',
+            type: 'POST',
+            data: { origin: document.getElementById("origin").value },
+            beforeSend: function () {
+                $("#loaderDiv").show();
+            },
+            success: function (data) {
+                // alert(new Blob([data.result]).size);
+
+                let processedResult = changeLine(data.result);
+
+                document.getElementById("result").innerHTML = processedResult;
+                WriteCanvasText(processedResult);
+                $("#loaderDiv").hide();
+                $('#copied').hide();
+
+                $('#copy').removeAttr('disabled');
+                $('#save').removeAttr('disabled');
+
+            }
+            , error: function (jqXHR, textStatus, err) {
+                alert('text status ' + textStatus + ', err ' + err)
+            }
+        })
+    });
+
+    $('#copy').click(function () {
+        let text = document.getElementById("result");
+        let range = document.createRange();
+        window.getSelection().removeAllRanges();
+        range.selectNode(text);
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+
+        $('#copied').show();
+    });
+
+    $('#save').click(function () {
+        const canvas = document.getElementById("mycanvas");
+        canvas.toBlob(function (blob) {
+            saveAs(blob, 'TsaiBroProBetelNut.png');
+        }, 'image/png');
+    });
+
+    function changeLine(str) {
+        let byteLen = 0;
+
+        for (let i = 0; i < str.length; i++) {
+            code = str.charCodeAt(i);
+
+            // UTF-8
+            if (code <= 0x7f)
+                byteLen += 1;
+            else if (code > 0x7f && code <= 0x7ff)
+                byteLen += 2;
+            else if (code > 0x7ff && code <= 0xffff)
+                byteLen += 3;
+            else if (code > 0xffff && code <= 0x10ffff)
+                byteLen += 4;
+
+            // console.log(byteLen);
+
+            if (byteLen >= 42) {
+                str = str.slice(0, i) + '<br>' + str.slice(i);
+                byteLen = 0;
+                i += 4;
+            }
+
+        }
+
+
+        console.log(str);
+        return str;
+    }
+
+</script>
+
+</html>
