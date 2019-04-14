@@ -17,8 +17,8 @@ app.get('/', function (req, res) {
   res.render('index', {result: null, error: null});
 })
 
-app.listen(5000, function () {
-  console.log('tsaibrobetalnuts app listening on port 5000!')
+app.listen(80, function () { // for heroku tcp 80 is acceptable
+  // console.log('tsaibrobetalnuts app listening on port 5000!')
 })
 
 app.post('/', function(req, res) {
