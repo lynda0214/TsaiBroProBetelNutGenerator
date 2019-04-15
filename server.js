@@ -37,7 +37,7 @@ app.post('/', function(req, res) {
         let result2str = result.join("...");
         result2str = result2str + "...";
 
-        console.log(result2str);
+        // console.log(result2str);
         
         res.json({result: result2str, error: null})
         //res.render('index', {result: result.join("..."), error: null});
