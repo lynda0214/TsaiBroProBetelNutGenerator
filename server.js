@@ -29,7 +29,7 @@ app.post('/', function(req, res) {
 
     let reg = new RegExp(/[.,:;?!。，：；、？！]/g); // remove non words
     origin = origin.replace(reg, ''); // 
-    // console.log(origin);
+    console.log("有...檳友...上線了...");
 
     node_jieba_parsing([dict1, dict2], origin, function (result) {
         
