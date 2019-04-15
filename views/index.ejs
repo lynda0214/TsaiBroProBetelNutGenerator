@@ -115,11 +115,11 @@
 
         for (let i = 0; i < splittedText.length; i++) {
             context.fillStyle = colorTheme[colorIndex][2];
-            context.fillText(splittedText[i], 5, 50 + 50 * i); // yellow
+            context.fillText(splittedText[i], 5, 50 + 50 * i); // shadow
             context.fillStyle = colorTheme[colorIndex][3];
-            context.fillText(splittedText[i], 3, 50 + 50 * i); // red
+            context.fillText(splittedText[i], 3, 50 + 50 * i); // body
 
-            if (i > 6)
+            if (i === 6) // 7th line
                 break;
         }
 
