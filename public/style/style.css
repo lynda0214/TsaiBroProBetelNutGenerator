@@ -1,0 +1,7 @@
+#mycanvas {
+    border: 1px solid rgba(0,0,0,.125); 
+    border-radius: .25rem; 
+    z-index: 1;
+    width: 100%;
+    height: 366px;
+}

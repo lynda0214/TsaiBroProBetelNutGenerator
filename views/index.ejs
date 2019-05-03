@@ -9,9 +9,9 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
-
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="/scripts/FileSaver.min.js"></script>
 
     <style>
         @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
@@ -24,13 +24,15 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container text-center">
             <h1>貝才哥專業檳榔攤產生器</h1>
-            <p class="text-center" style="margin:10px; color:#AAAAAA">為...取得...最佳...的...瀏覽...體驗...建議...使用...Chrome...瀏覽器</p>
+            <p class="text-center" style="margin:10px; color:#AAAAAA">為...取得...最佳...的...瀏覽...體驗...建議...使用...Chrome...瀏覽器
+            </p>
 
             <!---FBFanpage / Jieba / My GitHub Link / My Website-->
             <a class="btn btn-outline-success" href="https://www.facebook.com/caigezhuanyebinlangtan/" role="button">
                 <i class="fab fa-facebook"></i>
                 財哥專業檳榔攤</a>
-            <a class="btn btn-outline-success" href="https://github.com/lynda0214/TsaiBroProBetelNutGenerator" role="button">
+            <a class="btn btn-outline-success" href="https://github.com/lynda0214/TsaiBroProBetelNutGenerator"
+                role="button">
                 <i class="fab fa-github-alt"></i>
                 TsaiBroProBetelNutGenerator</a>
         </div>
@@ -39,7 +41,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-sm-12 col-lg-6">
 
                 <div class="card">
                     <div classs="card-body">
@@ -52,62 +54,98 @@
                     </div>
                 </div>
 
-                <div class="card" style="margin-top: 10px">
+                <div class="card" style="margin: 10px 0px">
                     <div classs="card-body" style="height:198px; ">
                         <div style="height:150px; padding:6px 12px 6px 12px">
                             <p id="result"></p>
                         </div>
-                        
-                        <button class="btn btn-secondary" id="copy" type="button" style="Float: right; margin: 5px" disabled="true">
+
+                        <button class="btn btn-secondary" id="copy" type="button" style="Float: right; margin: 5px"
+                            disabled="true">
                             <i class="far fa-copy"></i>
                             <span id="copied" style="display:none">已複製</span>
                         </button>
-                        
+
                     </div>
                 </div>
 
             </div>
-            <div class="col-6">
-                <canvas id="mycanvas" style="border:1px solid rgba(0,0,0,.125); border-radius: .25rem; z-index:1"
-                    width="538" height="406">
-                </canvas>
-                <button class="btn btn-secondary" id="save" type="button"
-                    style="z-index:2; position: absolute; right: 20px; bottom: 11px" disabled="true">
+            <div class="col-sm-12 col-lg-6">
+
+                <div id="palette-btns" class="btn-group btn-group-toggle" data-toggle="buttons"
+                    style="margin-bottom: 5px">
+                    <label class="btn btn-outline-secondary active" disabled="true">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked value="0"> 檳果綠
+                    </label>
+                    <label class="btn btn-outline-secondary" disabled="true">
+                        <input type="radio" name="options" id="option2" autocomplete="off" value="1"> 蜘蛛人
+                    </label>
+                    <label class="btn btn-outline-secondary" disabled="true">
+                        <input type="radio" name="options" id="option3" autocomplete="off" value="2"> 菁仔青
+                    </label>
+                    <label class="btn btn-outline-secondary" disabled="true">
+                        <input type="radio" name="options" id="option4" autocomplete="off" value="3"> 檳汁紅
+                    </label>
+                    <label class="btn btn-outline-secondary" disabled="true">
+                        <input type="radio" name="options" id="option5" autocomplete="off" value="4"> 財哥膚
+                    </label>
+                    <label class="btn btn-outline-secondary" disabled="true">
+                        <input type="radio" name="options" id="option6" autocomplete="off" value="5"> 包青天
+                    </label>
+                    <!-- <label class="btn btn-outline-secondary" disabled="true">
+                        <input type="radio" name="options" id="option7" autocomplete="off" value="6"> 燒紫芋
+                    </label> -->
+                </div>
+
+                <button class="btn btn-secondary" id="save" type="button" disabled="true"
+                    style="margin-bottom: 5px; Float: right;">
                     <i class="fas fa-file-download"></i>
                 </button>
+                <canvas id="mycanvas">
+                </canvas>
+
+                <!-- <button class="btn btn-secondary" id="save" type="button"
+                    style="z-index:2; position: absolute; right: 20px; bottom: 20px" disabled="true">
+                    <i class="fas fa-file-download"></i>
+                </button> -->
             </div>
         </div>
 
     </div>
 
-    
+
 </body>
 
 <script>
 
-    const colorTheme = new Array(5);
+    const colorTheme = new Array(7);
     colorTheme[0] = ["#697F4F", "#409808", "#FBDA57", "#AA0101", "#0E00BF"];
     colorTheme[1] = ["#F50306", "#F50306", "#EFF2F5", "#0400E3", "#060616"];
-    colorTheme[2] = ["#5E8246", "#289404", "#B9E7A8", "#21438C", "#FAFF00"];
+    colorTheme[2] = ["#41FD00", "#3AFF00", "#E70500", "#1C0000", "#040089"];
     colorTheme[3] = ["#B75953", "#F00300", "#FFF2E0", "#397100", "#050106"];
     colorTheme[4] = ["#94704E", "#A78208", "#D74A47", "#000000", "#F9F0FF"];
+    colorTheme[5] = ["#040404", "#040404", "#D31B19", "#FFFFFD", "#ED0400"];
+    colorTheme[6] = ["#4A344D", "#4A0816", "#005202", "#FAD400", "#F50300"];
+
+    let inputText;
 
     const prepareFontLoad = (fontList) => Promise.all(fontList.map(font => document.fonts.load(font)))
-    async function WriteCanvasText(text) {
+    async function WriteCanvasText(text, palette = '0') {
         // write some text to the canvas
         const canvas = document.getElementById("mycanvas");
         const context = canvas.getContext("2d");
 
-        let colorIndex = Math.floor(Math.random()*5);
+        // let colorIndex = Math.floor(Math.random() * 5);
+        let colorIndex = parseInt(palette);
 
-        const grd = context.createLinearGradient(0, 0, 538, 0);
+        const grd = context.createLinearGradient(0, 0, 300, 0);
         grd.addColorStop(0, colorTheme[colorIndex][0]);
         grd.addColorStop(1, colorTheme[colorIndex][1]);
 
         context.fillStyle = grd;
         context.fillRect(0, 0, 538, 406);
 
-        const fontList = ['bold 42px cwTeXKai']
+        const fontList = ['bold 21px cwTeXKai']
         await prepareFontLoad(fontList)
         context.font = fontList[0];
 
@@ -115,16 +153,16 @@
 
         for (let i = 0; i < splittedText.length; i++) {
             context.fillStyle = colorTheme[colorIndex][2];
-            context.fillText(splittedText[i], 5, 50 + 50 * i); // shadow
+            context.fillText(splittedText[i], 5, 21 + 21 * i); // shadow
             context.fillStyle = colorTheme[colorIndex][3];
-            context.fillText(splittedText[i], 3, 50 + 50 * i); // body
+            context.fillText(splittedText[i], 3, 21 + 21 * i); // body
 
             if (i === 6) // 7th line
                 break;
         }
 
         context.fillStyle = colorTheme[colorIndex][4]
-        context.fillText("臉書：貝才哥專業檳榔攤產生器", 3, 400);
+        context.fillText("臉書：貝才哥專業檳榔攤產生器", 3, 140);
 
     }
 
@@ -144,13 +182,15 @@
                 let processedResult = changeLine(data.result);
 
                 document.getElementById("result").innerHTML = processedResult;
-                WriteCanvasText(processedResult);
+                inputText = processedResult;
+                WriteCanvasText(inputText);
                 $("#loaderDiv").hide();
                 $('#copied').hide();
 
                 $('#copy').removeAttr('disabled');
                 $('#save').removeAttr('disabled');
 
+                $("#palette-btns .btn").removeAttr('disabled');
             }
             , error: function (jqXHR, textStatus, err) {
                 alert('text status ' + textStatus + ', err ' + err)
@@ -195,7 +235,7 @@
 
             // console.log(byteLen);
 
-            if (byteLen >= 42) {
+            if (byteLen >= 47) {
                 str = str.slice(0, i) + '<br>' + str.slice(i);
                 byteLen = 0;
                 i += 4;
@@ -207,6 +247,22 @@
         console.log(str);
         return str;
     }
+
+    $("#palette-btns .btn").on('click',
+        function (e) {
+
+            let val = $(this).find('input').val();
+            $(this).parent('.btn-group').children('label.btn').removeClass('active');
+            $(this).addClass('active');
+            // console.log(val);
+
+            if (!this.getAttribute('disabled')) {
+                WriteCanvasText(inputText, val);
+            }
+        }
+    );
+
+
 
 </script>
 
