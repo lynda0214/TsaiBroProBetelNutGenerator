@@ -59,13 +59,11 @@
                         <div style="height:150px; padding:6px 12px 6px 12px">
                             <p id="result"></p>
                         </div>
-
                         <button class="btn btn-secondary" id="copy" type="button" style="Float: right; margin: 5px"
                             disabled="true">
                             <i class="far fa-copy"></i>
                             <span id="copied" style="display:none">已複製</span>
                         </button>
-
                     </div>
                 </div>
 
@@ -97,17 +95,17 @@
                     </label> -->
                 </div>
 
-                <button class="btn btn-secondary" id="save" type="button" disabled="true"
+                <!-- <button class="btn btn-secondary" id="save" type="button" disabled="true"
                     style="margin-bottom: 5px; Float: right;">
                     <i class="fas fa-file-download"></i>
-                </button>
+                </button> -->
                 <canvas id="mycanvas">
                 </canvas>
 
-                <!-- <button class="btn btn-secondary" id="save" type="button"
-                    style="z-index:2; position: absolute; right: 20px; bottom: 20px" disabled="true">
+                <button class="btn btn-secondary" id="save" type="button"
+                    style="z-index:2; position: absolute; right: 20px; bottom: 15px" disabled="true">
                     <i class="fas fa-file-download"></i>
-                </button> -->
+                </button>
             </div>
         </div>
 
@@ -254,7 +252,7 @@
             let val = $(this).find('input').val();
             $(this).parent('.btn-group').children('label.btn').removeClass('active');
             $(this).addClass('active');
-            // console.log(val);
+            //console.log(val);
 
             if (!this.getAttribute('disabled')) {
                 WriteCanvasText(inputText, val);
