@@ -1,7 +1,55 @@
 #mycanvas {
-    border: 1px solid rgba(0,0,0,.125); 
-    border-radius: .25rem; 
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
     z-index: 1;
     width: 100%;
     height: 366px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.header-img {
+    max-width: 100%;
+}
+
+.header-side {
+    flex: 1;
+    align-self: flex-end;
+    height: 60px;
+    background-color: #00a651;
+}
+
+.header-button-set {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 80px;
+}
+
+.header-button-space {
+    display: inline-block;
+    width: 300px;
+}
+
+.header-button-set .btn {
+    color: #00a651;
+}
+
+@media screen and (max-width: 700px) {
+    .header-side {
+        display: none;
+    }
+
+    .header-button-set {
+        bottom: 0px;
+        margin-bottom: 2rem;
+    }
+
+    .header-button-space {
+        width: 2rem;
+    }
 }

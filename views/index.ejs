@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tsai Bro Pro Betel Nut Generator</title>
     <link rel="icon" type="image/png" href="/img/favicon.PNG" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -21,23 +22,24 @@
 
 <body>
 
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container text-center">
-            <h1>貝才哥專業檳榔攤產生器</h1>
-            <p class="text-center" style="margin:10px; color:#AAAAAA">為...取得...最佳...的...瀏覽...體驗...建議...使用...Chrome...瀏覽器
-            </p>
-
-            <!---FBFanpage / Jieba / My GitHub Link / My Website-->
-            <a class="btn btn-outline-success" href="https://www.facebook.com/caigezhuanyebinlangtan/" role="button">
-                <i class="fab fa-facebook"></i>
-                財哥專業檳榔攤</a>
-            <a class="btn btn-outline-success" href="https://github.com/lynda0214/TsaiBroProBetelNutGenerator"
-                role="button">
-                <i class="fab fa-github-alt"></i>
-                TsaiBroProBetelNutGenerator</a>
-        </div>
+    <div class="header-container">
+        <div class="header-side"></div>
+        <img class="header-img" src="/img/Banner.png" />
+        <div class="header-side"></div>
     </div>
 
+    <div class="header-button-set">
+        <a class="btn btn-light" href="https://www.facebook.com/caigezhuanyebinlangtan/" role="button">
+            <i class="fab fa-facebook"></i>
+            財哥專業檳榔攤
+        </a>
+        <div class="header-button-space" style=""></div>
+        <a class="btn btn-light" href="https://github.com/lynda0214/TsaiBroProBetelNutGenerator"
+            role="button">
+            <i class="fab fa-github-alt"></i>
+            github
+        </a>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -160,7 +162,7 @@
         }
 
         context.fillStyle = colorTheme[colorIndex][4]
-        context.fillText("臉書：貝才哥專業檳榔攤產生器", 3, 140);
+        context.fillText("臉書：財哥專業檳榔攤產生器", 3, 140);
 
     }
 
